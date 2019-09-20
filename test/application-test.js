@@ -40,7 +40,7 @@ describe('application loading', function () {
   })
 
   it('launches the application', function () {
-    return app.client.windowHandles().then(function (response) {
+    return app.client.getWindowHandles().then(function (response) {
       assert.strictEqual(response.value.length, 1)
     }).browserWindow.getBounds().should.eventually.roughly(5).deep.equal({
       x: 25,
@@ -264,6 +264,23 @@ describe('application loading', function () {
         .getText('.keypress-count').should.eventually.equal('A')
         .webContents.sendInputEvent({ type: 'keyDown', keyCode: 'B' })
         .getText('.keypress-count').should.eventually.equal('B')
+    })
+  })
+
+  describe('Application.client', function () {
+    it('can access elements using $', function () {
+      let result = app.client.$('//div[@class="occurrences-1"]')
+      return result.then(function (e) {
+        return e.getText().then(function (t) {
+          t.should.equal('word1 word2')
+        })
+      })
+    })
+
+    it('can access elements using $$', function () {
+      return app.client.$$('//div[@class="occurrences-1"]').then(function (e) {
+        return e[0].getText().should.eventually.equal('word1 word2')
+      })
     })
   })
 })

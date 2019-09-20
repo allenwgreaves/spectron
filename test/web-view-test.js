@@ -24,7 +24,7 @@ describe('<webview> tags', function () {
   it('allows the web view to be accessed', function () {
     // waiting for windowHandles ensures waitUntilWindowLoaded doesn't access a nil webContents.
     // TODO: this issue should be fixed by waitUntilWindowLoaded instead of this workaround.
-    return app.client.windowHandles()
+    return app.client.getWindowHandles()
       .waitUntilWindowLoaded()
       .waitUntil(function () {
         return this.getWindowCount().then(function (count) {

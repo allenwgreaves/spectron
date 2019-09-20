@@ -8,7 +8,7 @@ declare module "spectron" {
     import * as Electron from "electron";
     import * as WebdriverIO from "webdriverio";
 
-    export interface SpectronClient extends WebdriverIO.Client<void> {
+    export interface SpectronClient extends WebdriverIO.Browser<void> {
         /**
          * Focus a window using its title or URL.
          * <webview> tags can also be focused as a separate window.
@@ -32,7 +32,7 @@ declare module "spectron" {
          */
         getWindowCount():Promise<number>;
         /**
-         * Focus a window using its index from the windowHandles() array.
+         * Focus a window using its index from the getWindowHandles() array.
          * <webview> tags can also be focused as a separate window.
          */
         windowByIndex(index:number):Promise<void>;

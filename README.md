@@ -451,7 +451,7 @@ app.client.waitUntilWindowLoaded(10000)
 
 #### client.windowByIndex(index)
 
-Focus a window using its index from the `windowHandles()` array.
+Focus a window using its index from the `getWindowHandles()` array.
 `<webview>` tags can also be focused as a separate window.
 
 ```js
